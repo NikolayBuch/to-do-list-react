@@ -1,0 +1,40 @@
+.root {
+  pointer-events: none;
+}
+.checkbox {
+  position: absolute;
+
+  width: 25px;
+  height: 25px;
+
+  opacity: 0;
+  cursor: pointer;
+
+  & + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+
+    opacity: 1;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 23px;
+      height: 23px;
+      margin-right: 19px;
+      flex-shrink: 0;
+      flex-grow: 0;
+
+      border: 1px solid #1b1f2b;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 70%;
+    }
+  }
+}
+
+.checkbox:checked + label:after {
+  border-color: #1b1f2b;
+  background-image: url(../../../../public/img/check.svg);
+}

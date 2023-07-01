@@ -1,0 +1,25 @@
+.root {
+  width: auto;
+  height: auto;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+
+  width: 550px;
+  margin-top: 50px;
+
+  color: #969696;
+  align-items: center;
+}
+
+.count {
+  width: 45%;
+}
+.button {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+}
