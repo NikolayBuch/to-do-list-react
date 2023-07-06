@@ -19,11 +19,14 @@
       width: 20px;
       height: 20px;
     }
+    
   }
 
   &-close {
     width: 26px;
     height: 26px;
+    opacity: 0;
+    transition: opacity 300ms ease;
 
     img {
       pointer-events: none;

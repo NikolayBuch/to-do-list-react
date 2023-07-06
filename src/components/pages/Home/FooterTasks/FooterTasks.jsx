@@ -21,7 +21,7 @@ const FooterTasks = ({ count, completedTasks, removeCompleted, renderFilter }) =
             <Filter  renderFilter={renderFilter}/>
             <Button
               onClick={()=>removeCompleted()}
-              removeCompleted={removeCompleted}
+              // removeCompleted={removeCompleted}
               completedTasks={completedTasks}
               color='filter'>
               Clear Completed

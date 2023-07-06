@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './Header';
 import Form from './Form';
@@ -8,37 +8,52 @@ import FooterTasks from './FooterTasks';
 import s from './Home.module.scss';
 
 const Home = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, task: 'Task1', isCompleted: false },
-    { id: 2, task: 'Task2', isCompleted: false },
-    { id: 3, task: 'Task3', isCompleted: false },
-    { id: 4, task: 'Task4', isCompleted: false },
-    { id: 5, task: 'Task5', isCompleted: false },
-    { id: 6, task: 'Task6', isCompleted: false },
-  ]);
+  const [tasks, setTasks] = useState(
+    //   [
+    //   { id: 1, task: 'Task1', isCompleted: false },
+    //   { id: 2, task: 'Task2', isCompleted: false },
+    //   { id: 3, task: 'Task3', isCompleted: false },
+    //   { id: 4, task: 'Task4', isCompleted: false },
+    //   { id: 5, task: 'Task5', isCompleted: false },
+    //   { id: 6, task: 'Task6', isCompleted: false },
+
+    // ]
+    JSON.parse(localStorage.getItem('todoList'))
+  );
+  const [filter, setFilter] = useState(tasks);
+
+  useEffect(() => {
+    localStorage.setItem('todoList', JSON.stringify(tasks))
+    setFilter(tasks)
+  }, [tasks])
+
+  console.log(tasks);
 
   const completed = tasks.filter((task) => task.isCompleted);
   const uncompleted = tasks.filter((item) => !item.isCompleted);
 
   const createTask = (newTask) => {
-    setTasks([...tasks, newTask]);
+    const newTasks = [...tasks, newTask];
+    setTasks(newTasks);
   };
+
   const renderFilter = (filter) => {
-    const todo = [...tasks];
     switch (filter) {
       case 'All':
-        // setTasks(allTasks);
+        setFilter(tasks);
         break;
       case 'Completed':
-        setTasks(completed);
+        setFilter(completed);
         break;
       case 'Pending':
-        setTasks(uncompleted);
+        setFilter(uncompleted);
         break;
       default:
-        // setTasks(allTasks);
+        setFilter(tasks);
     }
+
   };
+
   const changeTask = (id) => {
     const todo = [...tasks];
     const current = todo.find((todo) => todo.id === id);
@@ -47,14 +62,15 @@ const Home = () => {
   };
 
   const removeTask = (item) => {
-    setTasks(tasks.filter((task) => task.id !== item.id));
+    const remove = tasks.filter((task) => task.id !== item.id);
+    setTasks(remove);
   };
 
-  const editTask = () => {
-    console.log('click');
-  };
+  // const editTask = () => {
+  //   console.log('click');
+  // };
 
-  const completeAll = () => {
+  const completeAll = (e) => {
     const todo = [...tasks];
     const isChecked =
       todo.filter((elem) => !!elem.isCompleted).length === todo.length;
@@ -62,7 +78,6 @@ const Home = () => {
     setTasks(todo);
     console.log(tasks);
   };
-  // console.log(tasks);
   const removeCompleted = () => {
     setTasks(uncompleted);
   };
@@ -75,13 +90,13 @@ const Home = () => {
         renderFilter={renderFilter}
         completed={completed}
         uncompleted={uncompleted}
-        tasks={tasks}
+        filter={filter}
         changeTask={changeTask}
         removeTask={removeTask}
-        editTask={editTask}
+        // editTask={editTask}
       />
       <FooterTasks
-        // renderFilter={renderFilter}
+        renderFilter={renderFilter}
         count={uncompleted.length}
         completedTasks={completed.length}
         removeCompleted={removeCompleted}

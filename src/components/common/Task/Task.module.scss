@@ -1,12 +1,16 @@
 .root {
   position: relative;
-  
+
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   width: 550px;
   height: auto;
   margin: 10px 0;
+
+  &:hover button{
+    opacity: 1;
+  }
 }
 
 .task {
