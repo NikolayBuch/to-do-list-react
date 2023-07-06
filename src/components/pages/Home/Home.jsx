@@ -9,6 +9,9 @@ import s from './Home.module.scss';
 
 const Home = () => {
   const [tasks, setTasks] = useState(
+     JSON.parse(localStorage.getItem('todoList')) || [
+    
+     ]
     //   [
     //   { id: 1, task: 'Task1', isCompleted: false },
     //   { id: 2, task: 'Task2', isCompleted: false },
@@ -18,14 +21,14 @@ const Home = () => {
     //   { id: 6, task: 'Task6', isCompleted: false },
 
     // ]
-    JSON.parse(localStorage.getItem('todoList'))
+    
   );
   const [filter, setFilter] = useState(tasks);
 
   useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(tasks))
-    setFilter(tasks)
-  }, [tasks])
+    localStorage.setItem('todoList', JSON.stringify(tasks));
+    setFilter(tasks);
+  }, [tasks]);
 
   console.log(tasks);
 
@@ -51,7 +54,6 @@ const Home = () => {
       default:
         setFilter(tasks);
     }
-
   };
 
   const changeTask = (id) => {
