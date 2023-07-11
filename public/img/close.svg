@@ -1,4 +1,13 @@
-<svg width="19" height="35" viewBox="0 0 19 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.41422 18.8284L0.707106 10.1213C0.316582 9.7308 0.316582 9.09763 0.707106 8.70711C1.09763 8.31659 1.7308 8.31659 2.12132 8.70711L9.41422 16L16.7071 8.70711C17.0976 8.31659 17.7308 8.31659 18.1213 8.70711C18.5119 9.09763 18.5119 9.7308 18.1213 10.1213L9.41422 18.8284Z" fill="#1B1F2B"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.41422 16L18.1213 24.7071C18.5119 25.0976 18.5119 25.7308 18.1213 26.1213C17.7308 26.5118 17.0976 26.5118 16.7071 26.1213L9.41422 18.8284L2.12132 26.1213C1.7308 26.5118 1.09763 26.5118 0.707106 26.1213C0.316582 25.7308 0.316582 25.0976 0.707106 24.7071L9.41422 16Z" fill="#1B1F2B"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 19 18.1701" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<clipPath id="ArtboardFrame">
+<rect height="18.1701" width="19" x="0" y="0"/>
+</clipPath>
+<g clip-path="url(#ArtboardFrame)" id="Без-названия">
+<path d="M9.49999 10.5112L0.309164 1.72298C-0.103055 1.32885-0.103055 0.689777 0.309164 0.295619C0.721383-0.0985396 1.38973-0.0985396 1.80194 0.295619L9.49999 7.65645L17.198 0.295619C17.6102-0.0985396 18.2786-0.0985396 18.6908 0.295619C19.1031 0.689777 19.1031 1.32885 18.6908 1.72298L9.49999 10.5112Z" fill="#1b1f2b" fill-rule="evenodd" opacity="1" stroke="none"/>
+<path d="M9.49999 7.65645L18.6908 16.4447C19.1031 16.8388 19.1031 17.4779 18.6908 17.872C18.2786 18.2662 17.6102 18.2662 17.198 17.872L9.49999 10.5112L1.80194 17.872C1.38973 18.2662 0.721383 18.2662 0.309164 17.872C-0.103055 17.4779-0.103055 16.8388 0.309164 16.4447L9.49999 7.65645Z" fill="#1b1f2b" fill-rule="evenodd" opacity="1" stroke="none"/>
+</g>
 </svg>

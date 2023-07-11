@@ -1,5 +1,16 @@
-.root{
+@import "styles/media.scss";
+.root {
+  position: absolute;
+  top: 0;
+  left: 32%;
+  
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @include media(sm) {
+    position: static;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

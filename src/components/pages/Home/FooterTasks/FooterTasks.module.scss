@@ -1,9 +1,12 @@
+@import "styles/media.scss";
 .root {
   width: auto;
   height: auto;
+  margin-bottom: 50px;
 }
 
 .filter {
+  position: relative;
   display: flex;
   justify-content: space-between;
 
@@ -12,11 +15,17 @@
 
   color: #969696;
   align-items: center;
+
+  @include media(sm) {
+    flex-direction: column;
+    width: 300px;
+  }
 }
 
 .count {
   width: 45%;
 }
+
 .button {
   display: flex;
   justify-content: space-between;

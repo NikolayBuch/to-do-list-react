@@ -1,19 +1,35 @@
+@import "styles/media.scss";
+
 .root {
   position: relative;
 
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 550px;
   height: auto;
   margin: 10px 0;
 
-  &:hover button{
-    opacity: 1;
+  @include hover {
+    &:hover button {
+      opacity: 1;
+    }
   }
 }
 
 .task {
   width: 500px;
   word-break: break-all;
+
+  @include media(md) {
+    width: 470px;
+  }
+
+  @include media(sm) {
+    width: 230px;
+  }
+}
+
+.completed {
+  width: fit-content;
+  text-decoration: line-through;
 }

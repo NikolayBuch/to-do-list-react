@@ -27,7 +27,7 @@ const Form = ({ create, completeAll }) => {
     <form className={s.root} onSubmit={addNewTask}>
       <Container>
         <Input
-          onBlur = {addNewTask}
+          onBlur={addNewTask}
           onChange={(e) => setTask(e.target.value)}
           value={task}
           type='text'
@@ -36,7 +36,7 @@ const Form = ({ create, completeAll }) => {
       </Container>
       <Container>
         <div className={s.button}>
-          <Button type='reset'  onClick={() => completeAll()} color='check'>
+          <Button type='reset' onClick={() => completeAll()} color='check'>
             <img src='./img/check.svg' alt='check' />
           </Button>
           <Button onClick={addNewTask} type='submit'>

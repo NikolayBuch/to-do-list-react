@@ -7,22 +7,32 @@ import Filter from './Filter';
 
 import s from './FooterTasks.module.scss';
 
-const FooterTasks = ({ count, completedTasks, removeCompleted, renderFilter }) => {
-
-  
+const FooterTasks = ({
+  removeCompleted,
+  renderFilter,
+  tasks,
+  completed,
+  uncompleted,
+}) => {
   return (
     <div className={s.root}>
       <Container>
         <div className={s.filter}>
-          <Text className={s.count} as='p'>
-            {count} items left
-          </Text>
+          <Filter
+            renderFilter={renderFilter}
+            tasks={tasks}
+            completed={completed}
+            uncompleted={uncompleted}
+          />
+
           <div className={s.button}>
-            <Filter  renderFilter={renderFilter}/>
+            <Text className={s.count} as='p'>
+              {uncompleted.length} items left
+            </Text>
+
             <Button
-              onClick={()=>removeCompleted()}
-              // removeCompleted={removeCompleted}
-              completedTasks={completedTasks}
+              onClick={() => removeCompleted()}
+              completedTasks={completed.length}
               color='filter'>
               Clear Completed
             </Button>

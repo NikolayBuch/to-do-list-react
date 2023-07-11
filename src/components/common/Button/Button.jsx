@@ -12,7 +12,7 @@ const Button = ({
   item,
   onClick,
   completedTasks,
-  disabled
+  disabled,
 }) => {
   const mods = modsClasses(s, {
     type,
@@ -21,9 +21,14 @@ const Button = ({
 
   return (
     <button
-    disabled={disabled}
+      disabled={disabled}
       onClick={onClick}
-      className={cx(s.root, mods, (completedTasks === 0) ? s.hide : s.visible)}
+      className={cx(
+        s.root,
+        mods,
+        completedTasks === 0 ? s.hide : s.visible,
+        item ? { [s.active]: item.isActive } : ''
+      )}
       type={type}>
       {item ? item.name : children}
     </button>

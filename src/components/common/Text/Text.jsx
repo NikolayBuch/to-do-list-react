@@ -5,11 +5,21 @@ import modsClasses from 'utils/modsClasses';
 
 import s from './Text.module.scss';
 
-const Text = ({ as: As, className, children, size, onDoubleClick, onClick }) => {
+const Text = ({
+  as: As,
+  className,
+  children,
+  size,
+  onDoubleClick,
+  onClick,
+}) => {
   const mods = modsClasses(s, { size });
 
   return (
-    <As onDoubleClick={onDoubleClick} onClick={onClick} className={cx(s.root, className, mods)}>
+    <As
+      onDoubleClick={onDoubleClick}
+      onClick={onClick}
+      className={cx(s.root, className, mods)}>
       {children}
     </As>
   );

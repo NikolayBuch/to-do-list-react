@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import Text from 'components/common/Text';
 
 import s from './Input.module.scss';
 
-const MyInput = ({ type, placeholder, value, onChange, onBlur }) => {
+const MyInput = ({ type, placeholder, value, onChange, onBlur, autoFocus }) => {
   return (
     <Text size='normal' className={s.root}>
       <input
-      onBlur={onBlur}
+        autoFocus={autoFocus}
+        onBlur={onBlur}
         onChange={onChange}
         value={value}
         type={type}
         className={s.newToDo}
-        
       />
       <label className={s.labelToDo}>
         <span>{placeholder}</span>
