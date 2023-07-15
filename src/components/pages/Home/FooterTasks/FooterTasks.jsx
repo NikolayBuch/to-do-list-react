@@ -9,8 +9,6 @@ import s from './FooterTasks.module.scss';
 
 const FooterTasks = ({
   removeCompleted,
-  renderFilter,
-  tasks,
   completed,
   uncompleted,
 }) => {
@@ -19,10 +17,6 @@ const FooterTasks = ({
       <Container>
         <div className={s.filter}>
           <Filter
-            renderFilter={renderFilter}
-            tasks={tasks}
-            completed={completed}
-            uncompleted={uncompleted}
           />
 
           <div className={s.button}>

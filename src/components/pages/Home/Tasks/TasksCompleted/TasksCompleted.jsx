@@ -3,15 +3,15 @@ import React from 'react';
 import Task from 'components/common/Task';
 import Container from 'components/common/Container';
 
-import s from './Tasks.module.scss';
+import s from '../Tasks.module.scss';
 
-const Tasks = ({ tasks, changeTask, removeTask, editedNewTask, }) => {
+const TasksCompleted = ({ completed, changeTask, removeTask, editedNewTask, }) => {
 
 
   return (
     <div className={s.root}>
       <Container>
-        {tasks.map((item) => (
+        {completed.map((item) => (
           <Task
             editedNewTask={editedNewTask}
             key={item.id}
@@ -25,4 +25,4 @@ const Tasks = ({ tasks, changeTask, removeTask, editedNewTask, }) => {
   );
 };
 
-export default Tasks;
+export default TasksCompleted;

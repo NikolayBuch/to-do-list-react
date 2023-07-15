@@ -1,54 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import Button from 'components/common/Button';
 import { filter } from './constants';
 
 import s from './Filter.module.scss';
 
-const Filter = ({ renderFilter, tasks, completed, uncompleted }) => {
+const Filter = () => {
   const [active, setActive] = useState(filter);
 
-  const activeButton = (item) => {
+  const location = useLocation();
+ 
+  const activeButton = (id) => {
     setActive(active.map((item) => (item.isActive = false)));
     const newActive = [...active];
-    const current = newActive.find((active) => active.id === item.id);
+    const current = newActive.find((active) => active.id === id);
     current.isActive = !current.isActive;
     setActive(newActive);
   };
 
-  const render = (filter) => {
-    switch (filter.name) {
-      case 'All':
-        renderFilter(tasks);
-        activeButton(filter);
+  const render = (item) => {
+    switch (item.pathname) {
+      case '/':
+        activeButton(1);
         break;
-      case 'Completed':
-        renderFilter(completed);
-        activeButton(filter);
-
+      case '/pending':
+        activeButton(2);
         break;
-      case 'Pending':
-        renderFilter(uncompleted);
-        activeButton(filter);
+      case '/completed':
+        activeButton(3);
         break;
       default:
-        renderFilter(tasks);
-        activeButton(filter);
+        activeButton(1);
     }
   };
+
+  useEffect(() => {
+    render(location);
+  }, [location]);
+
 
   return (
     <div className={s.root}>
       {filter.map((item) => (
-        <Button
-          active={active}
-          onClick={(e) => {
-            render(item);
-          }}
-          color='filter'
-          key={item.id}
-          item={item}
-        />
+        <Link to={item.to} className={s.link} key={item.id}>
+          <Button active={active} color='filter' item={item} />
+        </Link>
       ))}
     </div>
   );

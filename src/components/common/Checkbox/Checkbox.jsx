@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from './Checkbox.module.scss';
 
-const Checkbox = ({ onClick, isCompleted, item, changeTask }) => {
+const Checkbox = ({ onClick, item, changeTask }) => {
   return (
     <div
       onClick={onClick}
