@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Form from './Form';
 import Tasks from './Tasks';
-import TasksCompleted from './Tasks/TasksCompleted';
-import TasksUncompleted from './Tasks/TasksUncompleted';
 import FooterTasks from './FooterTasks';
 import Footer from './Footer/Footer';
 
@@ -25,9 +22,11 @@ const Home = () => {
     // ]
   );
 
+  const [filter, setFilter] = useState(tasks);
+
   useEffect(() => {
     localStorage.setItem('todoList', JSON.stringify(tasks));
-    setTasks(tasks);
+    setFilter(tasks);
   }, [tasks]);
 
   const completed = tasks.filter((task) => task.isCompleted);
@@ -74,46 +73,24 @@ const Home = () => {
     setTasks(uncompleted);
   };
 
+  const renderFilter = (render) => {
+    setFilter(render);
+  };
+
   return (
     <main className={s.root}>
       <Header />
       <Form create={createTask} completeAll={completeAll} />
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Tasks
-              tasks={tasks}
-              changeTask={changeTask}
-              removeTask={removeTask}
-              editedNewTask={editedNewTask}
-            />
-          }
-        />
-        <Route
-          path='completed'
-          element={
-            <TasksCompleted
-              completed={completed}
-              changeTask={changeTask}
-              removeTask={removeTask}
-              editedNewTask={editedNewTask}
-            />
-          }
-        />
-        <Route
-          path='pending'
-          element={
-            <TasksUncompleted
-              uncompleted={uncompleted}
-              changeTask={changeTask}
-              removeTask={removeTask}
-              editedNewTask={editedNewTask}
-            />
-          }
-        />
-      </Routes>
+      <Tasks
+        completed={completed}
+        uncompleted={uncompleted}
+        filter={filter}
+        changeTask={changeTask}
+        removeTask={removeTask}
+        editedNewTask={editedNewTask}
+      />
       <FooterTasks
+        renderFilter={renderFilter}
         removeCompleted={removeCompleted}
         tasks={tasks}
         completed={completed}

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
 import Button from 'components/common/Button';
 import { filter } from './constants';
 
 import s from './Filter.module.scss';
 
-const Filter = () => {
+const Filter = ({ renderFilter, tasks, completed, uncompleted }) => {
   const [active, setActive] = useState(filter);
 
-  const location = useLocation();
- 
   const activeButton = (id) => {
     setActive(active.map((item) => (item.isActive = false)));
     const newActive = [...active];
@@ -19,33 +16,43 @@ const Filter = () => {
     setActive(newActive);
   };
 
-  const render = (item) => {
-    switch (item.pathname) {
-      case '/':
-        activeButton(1);
+  useEffect(() => {
+    setActive(active);
+  }, [active]);
+
+  const render = (filter) => {
+    switch (filter.name) {
+      case 'All':
+        renderFilter(tasks);
+        activeButton(filter.id);
         break;
-      case '/pending':
-        activeButton(2);
+      case 'Completed':
+        renderFilter(completed);
+        activeButton(filter.id);
+
         break;
-      case '/completed':
-        activeButton(3);
+      case 'Pending':
+        renderFilter(uncompleted);
+        activeButton(filter.id);
         break;
       default:
-        activeButton(1);
+        renderFilter(tasks);
+        activeButton(filter.id);
     }
   };
-
-  useEffect(() => {
-    render(location);
-  }, [location]);
-
 
   return (
     <div className={s.root}>
       {filter.map((item) => (
-        <Link to={item.to} className={s.link} key={item.id}>
-          <Button active={active} color='filter' item={item} />
-        </Link>
+        <Button
+          onClick={(e) => {
+            render(item);
+          }}
+          active={active}
+          color='filter'
+          key={item.id}
+          item={item}
+        />
       ))}
     </div>
   );

@@ -15,6 +15,6 @@ export const filter = [
     id: 3,
     name: "Completed",
     isActive: false,
-    to: 'completed',
+    to: '/completed',
   },
 ];
