@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Button from 'components/common/Button';
 import { filter } from './constants';
 
 import s from './Filter.module.scss';
+import { useLocalStorage } from 'hooks/localStorage';
 
-const Filter = ({ renderFilter, tasks, completed, uncompleted }) => {
-  const [active, setActive] = useState(filter);
+const Filter = ({ renderFilter}) => {
+  const [active, setActive] = useLocalStorage('active', filter);
 
   const activeButton = (id) => {
     setActive(active.map((item) => (item.isActive = false)));
@@ -15,30 +16,11 @@ const Filter = ({ renderFilter, tasks, completed, uncompleted }) => {
     current.isActive = !current.isActive;
     setActive(newActive);
   };
-
-  useEffect(() => {
-    setActive(active);
-  }, [active]);
+  console.log(active);
 
   const render = (filter) => {
-    switch (filter.name) {
-      case 'All':
-        renderFilter(tasks);
-        activeButton(filter.id);
-        break;
-      case 'Completed':
-        renderFilter(completed);
-        activeButton(filter.id);
-
-        break;
-      case 'Pending':
-        renderFilter(uncompleted);
-        activeButton(filter.id);
-        break;
-      default:
-        renderFilter(tasks);
-        activeButton(filter.id);
-    }
+    renderFilter(filter.name);
+    activeButton(filter.id);
   };
 
   return (

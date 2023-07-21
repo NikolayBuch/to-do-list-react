@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Header from './Header';
 import Form from './Form';
@@ -7,27 +7,11 @@ import FooterTasks from './FooterTasks';
 import Footer from './Footer/Footer';
 
 import s from './Home.module.scss';
+import { useLocalStorage } from 'hooks/localStorage';
 
 const Home = () => {
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem('todoList')) || []
-    //   [
-    //   { id: 1, task: 'Task1', isCompleted: false },
-    //   { id: 2, task: 'Task2', isCompleted: false },
-    //   { id: 3, task: 'Task3', isCompleted: false },
-    //   { id: 4, task: 'Task4', isCompleted: false },
-    //   { id: 5, task: 'Task5', isCompleted: false },
-    //   { id: 6, task: 'Task6', isCompleted: false },
-
-    // ]
-  );
-
-  const [filter, setFilter] = useState(tasks);
-
-  useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(tasks));
-    setFilter(tasks);
-  }, [tasks]);
+  const [tasks, setTasks] = useLocalStorage('todoList', []);
+  const [filter, setFilter] = useLocalStorage('filter', 'All');
 
   const completed = tasks.filter((task) => task.isCompleted);
   const uncompleted = tasks.filter((item) => !item.isCompleted);
@@ -82,9 +66,8 @@ const Home = () => {
       <Header />
       <Form create={createTask} completeAll={completeAll} />
       <Tasks
-        completed={completed}
-        uncompleted={uncompleted}
         filter={filter}
+        tasks={tasks}
         changeTask={changeTask}
         removeTask={removeTask}
         editedNewTask={editedNewTask}
