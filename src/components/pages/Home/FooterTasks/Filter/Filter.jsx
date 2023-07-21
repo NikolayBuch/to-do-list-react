@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from 'components/common/Button';
 import { filter } from './constants';
@@ -39,5 +40,9 @@ const Filter = ({ renderFilter}) => {
     </div>
   );
 };
+
+Filter.propTypes = {
+  renderFilter: PropTypes.func,
+}
 
 export default Filter;

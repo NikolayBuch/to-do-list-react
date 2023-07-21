@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Input from 'components/common/Input';
 import Text from 'components/common/Text';
@@ -55,5 +56,13 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
     </div>
   );
 };
+
+Task.propTypes = {
+  item: PropTypes.object,
+  changeTask: PropTypes.func,
+  removeTask: PropTypes.func,
+  editedNewTask: PropTypes.func,
+
+}
 
 export default Task;

@@ -29,6 +29,9 @@ Text.propTypes = {
   children: PropTypes.any,
   className: PropTypes.string,
   size: PropTypes.oneOf(['normal', 'small', 'big', 'h1', 'h2', 'h3']),
+  onDoubleClick: PropTypes.func,
+  onClick: PropTypes.func,
+  as: PropTypes.any,
 };
 
 Text.defaultProps = {

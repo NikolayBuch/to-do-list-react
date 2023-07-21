@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import modsClasses from 'utils/modsClasses';
@@ -33,6 +34,20 @@ const Button = ({
       {item ? item.name : children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.any,
+  type: PropTypes.string,
+  color: PropTypes.oneOf(['check', 'close', 'filter']),
+  completedTasks: PropTypes.number,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  item: PropTypes.object,
+};
+
+Button.defaultProps = {
+  color: 'filter',
 };
 
 export default Button;

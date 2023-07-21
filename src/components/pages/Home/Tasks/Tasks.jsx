@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 import Task from 'components/common/Task';
 import Container from 'components/common/Container';
@@ -18,7 +19,10 @@ const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
     });
   };
 
-  const filteredTasks = useMemo(() => filterTasks(tasks, filter), [tasks, filter]);
+  const filteredTasks = useMemo(
+    () => filterTasks(tasks, filter),
+    [tasks, filter]
+  );
 
   return (
     <div className={s.root}>
@@ -35,6 +39,14 @@ const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
       </Container>
     </div>
   );
+};
+
+Tasks.propTypes = {
+  filter: PropTypes.string, 
+  tasks: PropTypes.array, 
+  changeTask: PropTypes.func, 
+  removeTask: PropTypes.func, 
+  editedNewTask: PropTypes.func, 
 };
 
 export default Tasks;

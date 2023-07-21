@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import Container from 'components/common/Container';
 import Text from 'components/common/Text';
@@ -10,7 +12,6 @@ import s from './FooterTasks.module.scss';
 const FooterTasks = ({
   removeCompleted,
   renderFilter,
-  tasks,
   completed,
   uncompleted,
 }) => {
@@ -20,9 +21,6 @@ const FooterTasks = ({
         <div className={s.filter}>
           <Filter
             renderFilter={renderFilter}
-            tasks={tasks}
-            completed={completed}
-            uncompleted={uncompleted}
           />
 
           <div className={s.button}>
@@ -42,5 +40,12 @@ const FooterTasks = ({
     </div>
   );
 };
+
+FooterTasks.propTypes = {
+  removeCompleted: PropTypes.func,
+  renderFilter: PropTypes.func,
+  completed: PropTypes.array,
+  uncompleted: PropTypes.array,
+}
 
 export default FooterTasks;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Text from 'components/common/Text';
 
@@ -20,6 +21,15 @@ const MyInput = ({ type, placeholder, value, onChange, onBlur, autoFocus }) => {
       </label>
     </Text>
   );
+};
+
+MyInput.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  autoFocus: PropTypes.func,
 };
 
 export default MyInput;
