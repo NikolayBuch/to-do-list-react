@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './Checkbox.module.scss';
 
-const Checkbox = ({ onClick, item, changeTask }) => {
+const Checkbox = ({ value, isCompleted, onChange }) => {
+  const handleChange = useCallback(() => {
+    if (onChange) onChange(value);
+  }, [value]);
   return (
-    <div onClick={onClick}>
+    <div className={s.root}>
       <input
-        onChange={() => changeTask(item.id)}
-        checked={item.isCompleted}
+        onChange={() => handleChange()}
+        checked={isCompleted}
         className={s.checkbox}
         id='checkbox'
         type='checkbox'
       />
-      <label onClick={() => changeTask(item.id)}></label>
+      <label></label>
     </div>
   );
 };
 
 Checkbox.propTypes = {
-  onClick: PropTypes.func,
-  item: PropTypes.shape({
-    id: PropTypes.number,
-    isCompleted: PropTypes.bool,
-  }),
-  changeTask: PropTypes.func,
+  isCompleted: PropTypes.bool,
+  value: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 export default Checkbox;

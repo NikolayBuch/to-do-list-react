@@ -10,10 +10,10 @@ const Button = ({
   type,
   color,
   children,
-  item,
   onClick,
-  completedTasks,
   disabled,
+  isActive,
+  isHide,
 }) => {
   const mods = modsClasses(s, {
     type,
@@ -27,11 +27,12 @@ const Button = ({
       className={cx(
         s.root,
         mods,
-        completedTasks === 0 ? s.hide : s.visible,
-        item ? { [s.active]: item.isActive } : ''
+        { [s.hide]: isHide },
+        { [s.active]: isActive }
       )}
       type={type}>
-      {item ? item.name : children}
+      {' '}
+      {children}
     </button>
   );
 };
@@ -40,10 +41,10 @@ Button.propTypes = {
   children: PropTypes.any,
   type: PropTypes.string,
   color: PropTypes.oneOf(['check', 'close', 'filter']),
-  completedTasks: PropTypes.number,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  item: PropTypes.object,
+  isActive: PropTypes.bool,
+  isHide: PropTypes.bool,
 };
 
 Button.defaultProps = {

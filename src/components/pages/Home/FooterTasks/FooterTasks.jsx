@@ -14,6 +14,7 @@ const FooterTasks = ({
   renderFilter,
   completed,
   uncompleted,
+  filter,
 }) => {
   return (
     <div className={s.root}>
@@ -21,6 +22,7 @@ const FooterTasks = ({
         <div className={s.filter}>
           <Filter
             renderFilter={renderFilter}
+            currentFilter={filter}
           />
 
           <div className={s.button}>
@@ -30,7 +32,7 @@ const FooterTasks = ({
 
             <Button
               onClick={() => removeCompleted()}
-              completedTasks={completed.length}
+              isHide={completed.length === 0 }
               color='filter'>
               Clear Completed
             </Button>

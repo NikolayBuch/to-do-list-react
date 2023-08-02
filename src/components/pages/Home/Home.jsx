@@ -73,6 +73,7 @@ const Home = () => {
         editedNewTask={editedNewTask}
       />
       <FooterTasks
+        filter={filter}
         renderFilter={renderFilter}
         removeCompleted={removeCompleted}
         tasks={tasks}

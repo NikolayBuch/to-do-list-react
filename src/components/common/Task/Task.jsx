@@ -38,7 +38,7 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
         />
       ) : (
         <div className={s.root}>
-          <Checkbox item={item} changeTask={changeTask} />
+          <Checkbox isCompleted={item.isCompleted} onChange={changeTask} value={item.id} />
           <div className={s.task}>
             <Text
               onDoubleClick={(e) => editTask(item)}
