@@ -5,12 +5,13 @@ import Text from 'components/common/Text';
 
 import s from './Input.module.scss';
 
-const MyInput = ({ type, placeholder, value, onChange, onBlur, autoFocus }) => {
+const MyInput = ({ type, placeholder, value, onChange, onBlur, autoFocus, onKeyDown }) => {
   return (
     <Text size='normal' className={s.root}>
       <input
         autoFocus={autoFocus}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         onChange={onChange}
         value={value}
         type={type}

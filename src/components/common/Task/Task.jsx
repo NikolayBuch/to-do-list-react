@@ -35,10 +35,15 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
           value={editsTask}
           onChange={(e) => setEditsTask(e.target.value)}
           onBlur={editedTask}
+          onKeyDown={(e) => e.key === 'Enter' && editedTask()}
         />
       ) : (
         <div className={s.root}>
-          <Checkbox isCompleted={item.isCompleted} onChange={changeTask} value={item.id} />
+          <Checkbox
+            isCompleted={item.isCompleted}
+            onChange={changeTask}
+            value={item.id}
+          />
           <div className={s.task}>
             <Text
               onDoubleClick={(e) => editTask(item)}
@@ -62,7 +67,6 @@ Task.propTypes = {
   changeTask: PropTypes.func,
   removeTask: PropTypes.func,
   editedNewTask: PropTypes.func,
-
-}
+};
 
 export default Task;
