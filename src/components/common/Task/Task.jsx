@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import Input from 'components/common/Input';
@@ -13,19 +13,22 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
 
   const [editsTask, setEditsTask] = useState(item.task);
 
-  const editTask = (item) => {
+  const editTask = () => {
     setEdit(true);
   };
 
-  const editedTask = () => {
+  const editedTask = useCallback(() => {
     const newTask = {
-      id: item.id,
+      ...item,
       task: editsTask,
-      isCompleted: item.isCompleted,
     };
     editedNewTask(newTask);
     setEdit(false);
-  };
+  }, [editsTask, item, editedNewTask]);
+
+  const handleChange = (e) =>  setEditsTask(e.target.value);
+
+  const handleKeyDown = (e) => e.key === 'Enter' && editedTask();
 
   return (
     <div>
@@ -33,9 +36,9 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
         <Input
           autoFocus
           value={editsTask}
-          onChange={(e) => setEditsTask(e.target.value)}
+          onChange={handleChange}
           onBlur={editedTask}
-          onKeyDown={(e) => e.key === 'Enter' && editedTask()}
+          onKeyDown={handleKeyDown}
         />
       ) : (
         <div className={s.root}>
@@ -44,9 +47,9 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
             onChange={changeTask}
             value={item.id}
           />
-          <div className={s.task}>
+          <div className={s.task} 
+          onDoubleClick={(e) => editTask()}>
             <Text
-              onDoubleClick={(e) => editTask(item)}
               as='p'
               className={item.isCompleted ? s.completed : ''}>
               {item.task}

@@ -10,15 +10,11 @@ const Text = ({
   className,
   children,
   size,
-  onDoubleClick,
-  onClick,
 }) => {
   const mods = modsClasses(s, { size });
 
   return (
     <As
-      onDoubleClick={onDoubleClick}
-      onClick={onClick}
       className={cx(s.root, className, mods)}>
       {children}
     </As>

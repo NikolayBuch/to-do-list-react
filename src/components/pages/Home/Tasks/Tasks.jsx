@@ -9,23 +9,13 @@ import s from './Tasks.module.scss';
 const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
   const filterTasks = (tasks, tab) => {
     return tasks.filter((todo) => {
-      // if (tab === 'All') {
-      //   return true;
-      // } else if (tab === 'Pending') {
-      //   return !todo.isCompleted;
-      // } else if (tab === 'Completed') {
-      //   return todo.isCompleted;
-      // }
       switch (tab) {
         case 'All':
           return true;
-          break;
         case 'Pending':
           return !todo.isCompleted;
-          break;
         case 'Completed':
           return todo.isCompleted;
-          break;
         default:
           return true;
       }

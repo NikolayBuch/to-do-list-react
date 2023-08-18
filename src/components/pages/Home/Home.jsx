@@ -22,22 +22,56 @@ const Home = () => {
   };
 
   const editedNewTask = (newTask) => {
-    const todo = [...tasks];
-    let current = todo.find((todo) => todo.id === newTask.id);
+
+    // const todo = [...tasks];
+    // let current = todo.find((todo) => todo.id === newTask.id);
+    // if (newTask.task.trim() === '') {
+    //   const remove = todo.filter((task) => task.id !== current.id);
+    //   setTasks(remove);
+    // } else {
+    //   current.task = newTask.task;
+    //   setTasks(todo);
+    // }
     if (newTask.task.trim() === '') {
-      const remove = todo.filter((task) => task.id !== current.id);
-      setTasks(remove);
+      const removedItems = tasks.filter((task) => task.id !== newTask.id);
+      setTasks(removedItems);
     } else {
-      current.task = newTask.task;
-      setTasks(todo);
+      const newTasks = tasks.map(task => {
+       if (task.id === newTask.id) {
+        return {
+         ...task,
+         task: newTask.task,
+        }
+       };
+
+       return task;
+      });
+
+      setTasks(newTasks);
     }
+
   };
 
   const changeTask = (id) => {
-    const todo = [...tasks];
-    const current = todo.find((todo) => todo.id === id);
-    current.isCompleted = !current.isCompleted;
-    setTasks(todo);
+    console.log(tasks)
+
+    const newChangeTask = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          isCompleted:  true ? false : true
+        }
+      }
+      return task
+    })
+
+    setTasks(newChangeTask)
+
+
+    // const todo = [...tasks];
+    // const current = todo.find((todo) => todo.id === id);
+    // current.isCompleted = !current.isCompleted;
+    // setTasks(todo);
   };
 
   const completeAll = (e) => {
