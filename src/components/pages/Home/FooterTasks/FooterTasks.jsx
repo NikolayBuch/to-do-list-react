@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import Container from 'components/common/Container';
 import Text from 'components/common/Text';
 import Button from 'components/common/Button';
@@ -10,20 +9,17 @@ import Filter from './Filter';
 import s from './FooterTasks.module.scss';
 
 const FooterTasks = ({
-  removeCompleted,
-  renderFilter,
+  onRemoveCompleted,
+  onRenderFilter,
   completed,
   uncompleted,
-  filter,
+  currentFilter,
 }) => {
   return (
     <div className={s.root}>
       <Container>
         <div className={s.filter}>
-          <Filter
-            renderFilter={renderFilter}
-            currentFilter={filter}
-          />
+          <Filter onRenderFilter={onRenderFilter} currentFilter={currentFilter} />
 
           <div className={s.button}>
             <Text className={s.count} as='p'>
@@ -31,8 +27,8 @@ const FooterTasks = ({
             </Text>
 
             <Button
-              onClick={() => removeCompleted()}
-              isHide={completed.length === 0 }
+              onClick={() => onRemoveCompleted()}
+              isHide={completed.length === 0}
               color='filter'>
               Clear Completed
             </Button>
@@ -44,10 +40,11 @@ const FooterTasks = ({
 };
 
 FooterTasks.propTypes = {
-  removeCompleted: PropTypes.func,
-  renderFilter: PropTypes.func,
+  omRemoveCompleted: PropTypes.func,
+  onRenderFilter: PropTypes.func,
+  currentFilter: PropTypes.string,
   completed: PropTypes.array,
   uncompleted: PropTypes.array,
-}
+};
 
 export default FooterTasks;

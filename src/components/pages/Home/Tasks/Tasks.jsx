@@ -6,7 +6,7 @@ import Container from 'components/common/Container';
 
 import s from './Tasks.module.scss';
 
-const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
+const Tasks = ({ currentFilter, tasks, onChangeTask, onRemoveTask, onEditedTask }) => {
   const filterTasks = (tasks, tab) => {
     return tasks.filter((todo) => {
       switch (tab) {
@@ -23,8 +23,8 @@ const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
   };
 
   const filteredTasks = useMemo(
-    () => filterTasks(tasks, filter),
-    [tasks, filter]
+    () => filterTasks(tasks, currentFilter),
+    [tasks, currentFilter]
   );
 
   return (
@@ -32,11 +32,11 @@ const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
       <Container>
         {filteredTasks.map((item) => (
           <Task
-            editedNewTask={editedNewTask}
+            onEditedTask={onEditedTask}
             key={item.id}
             item={item}
-            changeTask={changeTask}
-            removeTask={removeTask}
+            onChangeTask={onChangeTask}
+            onRemoveTask={onRemoveTask}
           />
         ))}
       </Container>
@@ -45,11 +45,11 @@ const Tasks = ({ filter, tasks, changeTask, removeTask, editedNewTask }) => {
 };
 
 Tasks.propTypes = {
-  filter: PropTypes.string,
+  currentFilter: PropTypes.string,
   tasks: PropTypes.array,
-  changeTask: PropTypes.func,
-  removeTask: PropTypes.func,
-  editedNewTask: PropTypes.func,
+  onChangeTask: PropTypes.func,
+  onRemoveTask: PropTypes.func,
+  onEditedTask: PropTypes.func,
 };
 
 export default Tasks;

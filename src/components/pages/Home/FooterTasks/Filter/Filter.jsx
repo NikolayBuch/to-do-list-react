@@ -6,10 +6,10 @@ import { filter } from './constants';
 
 import s from './Filter.module.scss';
 
-const Filter = ({ renderFilter, currentFilter}) => {
+const Filter = ({ onRenderFilter, currentFilter}) => {
 
-  const render = (filter) => {
-    renderFilter(filter.name);
+  const valueFilter = (value) => {
+    onRenderFilter(value);
   };
 
   return (
@@ -17,7 +17,7 @@ const Filter = ({ renderFilter, currentFilter}) => {
       {filter.map((item) => (
         <Button
           onClick={(e) => {
-            render(item);
+            valueFilter(item.name);
           }}
           isActive={item.name === currentFilter}
           color='filter'
@@ -30,7 +30,7 @@ const Filter = ({ renderFilter, currentFilter}) => {
 
 
 Filter.propTypes = {
-  renderFilter: PropTypes.func,
+  onRenderFilter: PropTypes.func,
   currentFilter: PropTypes.string,
 }
 

@@ -21,60 +21,41 @@ const Home = () => {
     setTasks(newTasks);
   };
 
-  const editedNewTask = (newTask) => {
-
-    // const todo = [...tasks];
-    // let current = todo.find((todo) => todo.id === newTask.id);
-    // if (newTask.task.trim() === '') {
-    //   const remove = todo.filter((task) => task.id !== current.id);
-    //   setTasks(remove);
-    // } else {
-    //   current.task = newTask.task;
-    //   setTasks(todo);
-    // }
+  const editedTask = (newTask) => {
     if (newTask.task.trim() === '') {
       const removedItems = tasks.filter((task) => task.id !== newTask.id);
       setTasks(removedItems);
     } else {
-      const newTasks = tasks.map(task => {
-       if (task.id === newTask.id) {
-        return {
-         ...task,
-         task: newTask.task,
+      const newTasks = tasks.map((task) => {
+        if (task.id === newTask.id) {
+          return {
+            ...task,
+            task: newTask.task,
+          };
         }
-       };
 
-       return task;
+        return task;
       });
 
       setTasks(newTasks);
     }
-
   };
 
   const changeTask = (id) => {
-    console.log(tasks)
-
-    const newChangeTask = tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          isCompleted:  true ? false : true
+    setTasks((prev) => {
+      return prev.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            isCompleted: !task.isCompleted,
+          };
         }
-      }
-      return task
-    })
-
-    setTasks(newChangeTask)
-
-
-    // const todo = [...tasks];
-    // const current = todo.find((todo) => todo.id === id);
-    // current.isCompleted = !current.isCompleted;
-    // setTasks(todo);
+        return { ...task };
+      });
+    });
   };
 
-  const completeAll = (e) => {
+  const changeAllTask = (e) => {
     const todo = [...tasks];
     const isChecked =
       todo.filter((elem) => !!elem.isCompleted).length === todo.length;
@@ -91,25 +72,25 @@ const Home = () => {
     setTasks(uncompleted);
   };
 
-  const renderFilter = (render) => {
-    setFilter(render);
+  const renderFilter = (name) => {
+    setFilter(name);
   };
 
   return (
     <main className={s.root}>
       <Header />
-      <Form create={createTask} completeAll={completeAll} />
+      <Form onCreateTask={createTask} onChangeAllTask={changeAllTask} />
       <Tasks
-        filter={filter}
+        currentFilter={filter}
         tasks={tasks}
-        changeTask={changeTask}
-        removeTask={removeTask}
-        editedNewTask={editedNewTask}
+        onChangeTask={changeTask}
+        onRemoveTask={removeTask}
+        onEditedTask={editedTask}
       />
       <FooterTasks
-        filter={filter}
-        renderFilter={renderFilter}
-        removeCompleted={removeCompleted}
+        currentFilter={filter}
+        onRenderFilter={renderFilter}
+        onRemoveCompleted={removeCompleted}
         tasks={tasks}
         completed={completed}
         uncompleted={uncompleted}

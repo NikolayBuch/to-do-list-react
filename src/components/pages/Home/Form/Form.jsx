@@ -8,7 +8,7 @@ import Button from 'components/common/Button';
 
 import s from './Form.module.scss';
 
-const Form = ({ create, completeAll }) => {
+const Form = ({ onCreateTask, onChangeAllTask }) => {
   const [task, setTask] = useState('');
 
   const addNewTask = (e) => {
@@ -21,7 +21,7 @@ const Form = ({ create, completeAll }) => {
     };
 
     if (task === '') return;
-    create(newTask);
+    onCreateTask(newTask);
     setTask('');
   };
 
@@ -38,7 +38,7 @@ const Form = ({ create, completeAll }) => {
       </Container>
       <Container>
         <div className={s.button}>
-          <Button type='reset' onClick={() => completeAll()} color='check'>
+          <Button type='reset' onClick={() => onChangeAllTask()} color='check'>
             <img src='./img/check.svg' alt='check' />
           </Button>
           <Button onClick={addNewTask} type='submit'>

@@ -8,7 +8,7 @@ import Button from 'components/common/Button';
 
 import s from './Task.module.scss';
 
-const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
+const Task = ({ item, onChangeTask, onRemoveTask, onEditedTask }) => {
   const [edit, setEdit] = useState(false);
 
   const [editsTask, setEditsTask] = useState(item.task);
@@ -22,9 +22,9 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
       ...item,
       task: editsTask,
     };
-    editedNewTask(newTask);
+    onEditedTask(newTask);
     setEdit(false);
-  }, [editsTask, item, editedNewTask]);
+  }, [editsTask, item, onEditedTask]);
 
   const handleChange = (e) =>  setEditsTask(e.target.value);
 
@@ -44,7 +44,7 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
         <div className={s.root}>
           <Checkbox
             isCompleted={item.isCompleted}
-            onChange={changeTask}
+            onChange={onChangeTask}
             value={item.id}
           />
           <div className={s.task} 
@@ -56,7 +56,7 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
             </Text>
           </div>
 
-          <Button onClick={() => removeTask(item)} color='close'>
+          <Button onClick={() => onRemoveTask(item)} color='close'>
             <img src='./img/close.svg' alt='close' />
           </Button>
         </div>
@@ -67,9 +67,9 @@ const Task = ({ item, changeTask, removeTask, editedNewTask }) => {
 
 Task.propTypes = {
   item: PropTypes.object,
-  changeTask: PropTypes.func,
-  removeTask: PropTypes.func,
-  editedNewTask: PropTypes.func,
+  onChangeTask: PropTypes.func,
+  onRemoveTask: PropTypes.func,
+  onEditedTask: PropTypes.func,
 };
 
 export default Task;
